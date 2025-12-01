@@ -4,7 +4,7 @@ import { MotivationModal } from './components/MotivationModal';
 import { StoreModal } from './components/StoreModal';
 import { CategoryType, StreakData, Wallet, GlobalStats, STORAGE_KEY, WALLET_KEY, GLOBAL_KEY } from './types';
 import { getTodayDateString, calculateStreakStatus, addDays } from './utils';
-import { Activity, Coins, ShieldCheck, Trophy } from 'lucide-react';
+import { Activity, Coins, ShieldCheck, Trophy, ExternalLink } from 'lucide-react';
 
 const INITIAL_DATA: StreakData[] = [
   {
@@ -302,6 +302,21 @@ export default function App() {
               setLoadingMotivation={setLoadingMotivation}
             />
           ))}
+        </div>
+
+        {/* Footer Link */}
+        <div className="mt-8 pt-4 flex justify-center pb-2">
+          <a
+            href="https://www.notion.so/250e64e8f1d3453d93bdf7349ad6f554"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 px-4 py-2 bg-gray-900/50 hover:bg-gray-800 rounded-full border border-gray-800 hover:border-blue-500/30 transition-all cursor-pointer"
+          >
+            <span className="text-xs font-medium text-gray-500 group-hover:text-blue-400 transition-colors">
+              Sobre o Método TriStreak
+            </span>
+            <ExternalLink size={12} className="text-gray-600 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all" />
+          </a>
         </div>
 
       </main>
