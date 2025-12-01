@@ -15,6 +15,12 @@ export const getYesterdayDateString = (): string => {
   return `${year}-${month}-${day}`;
 };
 
+export const addDays = (dateString: string, days: number): string => {
+  const date = new Date(dateString);
+  date.setDate(date.getDate() + days);
+  return date.toISOString().split('T')[0];
+};
+
 export const calculateStreakStatus = (lastDate: string | null): { isCompletedToday: boolean; isBroken: boolean } => {
   if (!lastDate) return { isCompletedToday: false, isBroken: true };
 
