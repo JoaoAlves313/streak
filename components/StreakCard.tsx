@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Flame, Brain, Dumbbell, Apple, Sparkles } from 'lucide-react';
+import { Check, Flame, Brain, Dumbbell, Apple, Sparkles, Droplets } from 'lucide-react';
 import { StreakData, CategoryType } from '../types';
 import { getMotivationalTip } from '../services/geminiService';
 
@@ -48,6 +48,15 @@ export const StreakCard: React.FC<StreakCardProps> = ({
           borderStyle: 'border-orange-500/50',
           textStyle: 'text-orange-400',
           badgeStyle: 'bg-orange-500/20 text-orange-300'
+        };
+      case CategoryType.HYGIENE:
+        return {
+          icon: <Droplets size={20} className="text-white" />,
+          color: 'cyan',
+          bgStyle: 'bg-cyan-500',
+          borderStyle: 'border-cyan-500/50',
+          textStyle: 'text-cyan-400',
+          badgeStyle: 'bg-cyan-500/20 text-cyan-300'
         };
     }
   };

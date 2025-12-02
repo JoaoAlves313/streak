@@ -30,6 +30,14 @@ const INITIAL_DATA: StreakData[] = [
     bestStreak: 0,
     lastCompletedDate: null,
     history: []
+  },
+  {
+    id: 'hyg',
+    type: CategoryType.HYGIENE,
+    currentStreak: 0,
+    bestStreak: 0,
+    lastCompletedDate: null,
+    history: []
   }
 ];
 
@@ -94,6 +102,10 @@ export default function App() {
       try {
         const parsed: StreakData[] = JSON.parse(storedStreaks);
         
+        // Ensure structure matches current INITIAL_DATA (handles adding new categories)
+        // If parsed length differs from INITIAL_DATA, we might need to merge logic, 
+        // but changing STORAGE_KEY version in types.ts is safer to reset for new features.
+        
         // Process reset logic for individual streaks
         const updated = parsed.map(streak => {
           const { isBroken } = calculateStreakStatus(streak.lastCompletedDate);
@@ -108,6 +120,9 @@ export default function App() {
         setStreaks(updated);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
       } catch (e) { console.error(e); }
+    } else {
+      // If no storage (or new key), use initial data
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_DATA));
     }
   }, []);
 
@@ -136,7 +151,8 @@ export default function App() {
     // 2. Check Master Streak & Coins Logic
     // Count how many tasks are done TODAY
     const completedTodayCount = updatedStreaks.filter(s => s.lastCompletedDate === today).length;
-    const allCompleted = completedTodayCount === 3;
+    // Dynamic check: if count equals total number of categories
+    const allCompleted = completedTodayCount === updatedStreaks.length;
 
     // Update Global Stats (Master Streak) if all completed
     if (allCompleted && globalStats.lastPerfectDate !== today) {
@@ -270,7 +286,7 @@ export default function App() {
           <div className="text-right pb-1">
              <span className="text-xs text-gray-500 font-medium">Progresso Diário</span>
              <div className="flex gap-1.5 mt-2 justify-end">
-               {[1, 2, 3].map((step) => (
+               {[1, 2, 3, 4].map((step) => (
                  <div 
                    key={step} 
                    className={`

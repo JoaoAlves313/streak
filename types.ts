@@ -1,7 +1,8 @@
 export enum CategoryType {
   DEVELOPMENT = 'Desenvolvimento',
   NUTRITION = 'Alimentação',
-  PHYSICAL = 'Físico'
+  PHYSICAL = 'Físico',
+  HYGIENE = 'Higiene'
 }
 
 export interface StreakData {
@@ -29,6 +30,6 @@ export interface QuoteResponse {
   author?: string;
 }
 
-export const STORAGE_KEY = 'tristreak_data_v1';
+export const STORAGE_KEY = 'tristreak_data_v2';
 export const WALLET_KEY = 'tristreak_wallet_v1';
 export const GLOBAL_KEY = 'tristreak_global_v1';
